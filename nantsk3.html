@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo List</title>
+	<style>
+        * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+h1 {
+	font-size: 36px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+input[type="text"] {
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	margin-right: 10px;
+}
+
+button {
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #3e8e41;
+}
+
+main {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+li {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+li span {
+	font-size: 18px;
+}
+
+li button {
+	background-color: #f44336;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+li button:hover {
+	background-color: #d32f2f;
+}
+
+@media only screen and (max-width: 600px) {
+	h1 {
+		font-size: 24px;
+	}
+	
+	li span {
+		font-size: 14px;
+	}
+	
+	input[type="text"] {
+		width: 80%;
+	}
+	
+	button {
+		width: 20%;
+	}
+}
+
+    </style>>
+</head>
+<body>
+	<header>
+		<h1>Todo List</h1>
+		<input type="text" id="new-task" placeholder="Add New Task">
+		<button id="add-btn">Add</button>
+	</header>
+	
+	<main>
+		<ul id="task-list"></ul>
+	</main>
+	
+	<footer>
+		<p>Created by Nandini Marri</p>
+	</footer>
+	
+	<script>
+        const newTaskInput = document.querySelector('#new-task');
+const addTaskButton = document.querySelector('#add-btn');
+const taskList = document.querySelector('#task-list');
+
+addTaskButton.addEventListener('click', addTask);
+
+function addTask() {
+  const taskText = newTaskInput.value;
+  if (!taskText) {
+    return;
+  }
+
+  const taskItem = document.createElement('li');
+  taskItem.innerHTML = `<span>${taskText}</span><button class="delete-btn">Delete</button>`;
+  taskList.appendChild(taskItem);
+
+  const deleteButton = taskItem.querySelector('.delete-btn');
+  deleteButton.addEventListener('click', deleteTask);
+
+  newTaskInput.value = '';
+}
+
+function deleteTask(event) {
+  const taskItem = event.target.parentElement;
+  taskList.removeChild(taskItem);
+}
+
+    </script>
+</body>
+</html>
